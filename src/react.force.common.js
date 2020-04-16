@@ -30,16 +30,16 @@
 export const exec = (moduleIOSName, moduleAndroidName, moduleIOS, moduleAndroid, successCB, errorCB, methodName, args) => {
     if (moduleIOS) {
         const func = `${moduleIOSName}.${methodName}`;
-        console.log(`${func} called: ${JSON.stringify(args)}`);
+        //console.log(`${func} called: ${JSON.stringify(args)}`);
         moduleIOS[methodName](
             args,
             (error, result) => {
                 if (error) {
-                    console.log(`${func} failed: ${JSON.stringify(error)}`);
+                    //console.log(`${func} failed: ${JSON.stringify(error)}`);
                     if (errorCB) errorCB(error);
                 }
                 else {
-                    console.log(`${func} succeeded`);
+                    //console.log(`${func} succeeded`);
                     if (successCB) successCB(result);
                 }
             });
@@ -47,11 +47,11 @@ export const exec = (moduleIOSName, moduleAndroidName, moduleIOS, moduleAndroid,
     // android
     else if (moduleAndroid) {
         const func = `${moduleAndroidName}.${methodName}`;
-        console.log(`${func} called: ${JSON.stringify(args)}`);
+        //console.log(`${func} called: ${JSON.stringify(args)}`);
         moduleAndroid[methodName](
             args,
             result => {
-                console.log(`${func} succeeded`);
+                //console.log(`${func} succeeded`);
                 if (successCB) {
                     successCB(safeJSONparse(result));
                 };
